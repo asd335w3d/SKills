@@ -19,9 +19,11 @@
 SKills/
 ├── .github/
 │   ├── copilot-instructions.md          # Copilot 全局指令
-│   └── skills/                          # Copilot Agent Skills 加载目录
-│       └── <skill-name>/
-│           └── SKILL.md                 # 技能主文件
+│   ├── skills/                          # Copilot Agent Skills 加载目录
+│   │   └── <skill-name>/
+│   │       └── SKILL.md                 # 技能主文件
+│   └── workflows/                       # GitHub Actions 工作流
+│       └── create-skill.yml             # Agent 工作流：自动创建 Skill
 ├── skills/                              # 技能集合目录
 │   ├── README.md                        # 技能索引
 │   ├── template/                        # 标准技能模板
@@ -33,6 +35,12 @@ SKills/
 ```
 
 ## 快速开始
+
+### 使用 Agent 工作流（推荐）
+
+进入 **Actions → 创建新 Skill（Copilot Agent）**，填写技能名称和需求描述，Copilot Agent 将自动理解项目结构、生成 Skill 并提交 Pull Request。
+
+### 手动创建
 
 1. 复制 [`skills/template/SKILL.md`](skills/template/SKILL.md) 到 `skills/<技能名>/SKILL.md`
 2. 填写 `name`、`description` 字段及正文内容

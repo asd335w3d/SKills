@@ -31,9 +31,11 @@
 SKills/
 ├── .github/
 │   ├── copilot-instructions.md          # Copilot 全局指令（本文件）
-│   └── skills/                          # Copilot Agent Skills 加载目录
-│       └── <skill-name>/                # 每个技能独占一个目录
-│           └── SKILL.md                 # 技能主文件（必需）
+│   ├── skills/                          # Copilot Agent Skills 加载目录
+│   │   └── <skill-name>/                # 每个技能独占一个目录
+│   │       └── SKILL.md                 # 技能主文件（必需）
+│   └── workflows/                       # GitHub Actions 工作流
+│       └── create-skill.yml             # Agent 工作流：理解需求并创建 Skill
 ├── skills/                              # 技能集合目录（对外输出）
 │   ├── README.md                        # 技能索引与说明
 │   ├── template/                        # 标准技能模板

@@ -47,6 +47,19 @@ license: MIT             # 可选
 
 ## 快速新建技能
 
+### 方式一：使用 Copilot Agent 工作流（推荐）
+
+在 GitHub 仓库页面，进入 **Actions → 创建新 Skill（Copilot Agent）**，点击 **Run workflow**，填写：
+
+| 输入项 | 说明 |
+|--------|------|
+| `skill_name` | 技能目录名（小写，连字符，如 `my-skill`） |
+| `requirement` | 技能需求描述（功能、场景、预期行为） |
+
+Copilot Agent 将自动：理解项目结构 → 生成符合规范的 Skill → 注册索引 → 提交 Pull Request。
+
+### 方式二：手动创建
+
 ```bash
 # 1. 复制模板目录
 cp -r skills/template skills/<your-skill-name>
