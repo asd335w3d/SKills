@@ -44,7 +44,11 @@ tags:                    # 可选
 
 | 技能名称 | 目录 | 描述 |
 |----------|------|------|
-| （暂无已注册技能，请按规范新建后在此登记） | — | — |
+| `code-review` | [`skills/code-review/`](./code-review/) | 对指定代码文件进行全面质量审查，从正确性、安全性、性能、可读性五个维度识别问题，输出带行号的改进建议 |
+| `generate-unit-tests` | [`skills/generate-unit-tests/`](./generate-unit-tests/) | 读取源代码文件，自动生成覆盖正常路径、边界条件和异常情况的单元测试代码，支持 Jest、pytest、Go testing 等主流框架 |
+| `git-commit-helper` | [`skills/git-commit-helper/`](./git-commit-helper/) | 分析 Git 暂存区变更，自动生成符合 Conventional Commits 规范的 commit message，支持建议拆分为多个原子提交 |
+| `refactor-code` | [`skills/refactor-code/`](./refactor-code/) | 分析代码中的坏味道（过长函数、重复代码、过深嵌套等），给出对应重构手法和重构后的完整代码 |
+| `api-doc-generator` | [`skills/api-doc-generator/`](./api-doc-generator/) | 读取路由/控制器代码或 OpenAPI 规范文件，生成含请求参数、响应结构和 curl 示例的 Markdown 格式 API 文档 |
 
 ---
 
