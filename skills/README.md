@@ -61,7 +61,28 @@ tags:                    # 可选
 
 ## 快速新建技能
 
-### 方式一：使用 Copilot Agent 工作流（推荐）
+### 方式一：使用 CLI 脚本（推荐）
+
+在仓库根目录运行以下命令，自动脚手架新技能：
+
+```bash
+npm run skill:new -- <skill-name>
+# 示例
+npm run skill:new -- my-new-skill
+```
+
+脚本将自动完成：复制模板 → 替换占位符 → 创建 `.github/skills/` 副本 → 注册索引。
+
+其他可用 CLI 命令：
+
+| 命令 | 说明 |
+|------|------|
+| `npm run skill:new -- <name>` | 从模板脚手架新建技能 |
+| `npm run skill:list` | 列出所有已注册技能及版本 |
+| `npm run skill:validate` | 校验所有技能文件的规范性 |
+| `npm run skill:sync` | 将 `skills/` 同步到 `.github/skills/` |
+
+### 方式二：使用 Copilot Agent 工作流
 
 在 GitHub 仓库页面，进入 **Actions → 创建新 Skill（Copilot Agent）**，点击 **Run workflow**，填写：
 
@@ -72,7 +93,7 @@ tags:                    # 可选
 
 Copilot Agent 将自动：理解项目结构 → 生成符合规范的 Skill → 注册索引 → 提交 Pull Request。
 
-### 方式二：手动创建
+### 方式三：手动创建
 
 ```bash
 # 1. 复制模板目录
