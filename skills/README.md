@@ -49,6 +49,9 @@ tags:                    # 可选
 | `git-commit-helper` | [`skills/git-commit-helper/`](./git-commit-helper/) | 分析 Git 暂存区变更，自动生成符合 Conventional Commits 规范的 commit message，支持建议拆分为多个原子提交 |
 | `refactor-code` | [`skills/refactor-code/`](./refactor-code/) | 分析代码中的坏味道（过长函数、重复代码、过深嵌套等），给出对应重构手法和重构后的完整代码 |
 | `api-doc-generator` | [`skills/api-doc-generator/`](./api-doc-generator/) | 读取路由/控制器代码或 OpenAPI 规范文件，生成含请求参数、响应结构和 curl 示例的 Markdown 格式 API 文档 |
+| `logical-reasoning` | [`skills/logical-reasoning/`](./logical-reasoning/) | 对复杂问题进行结构化链式推理，通过问题分解、前提识别、逐步推导和结论验证，输出带置信度标注的推理分析报告 |
+| `solution-comparison` | [`skills/solution-comparison/`](./solution-comparison/) | 对多个候选技术方案进行系统性横向对比，建立加权评分矩阵并分析各方案核心优势与致命弱点，输出结构化方案对比报告 |
+| `decision-framework` | [`skills/decision-framework/`](./decision-framework/) | 综合运用推理和方案比较结果，结合目标、约束和风险评估，给出最优决策建议及实施路径，输出可直接用于汇报的决策文档 |
 
 ---
 
