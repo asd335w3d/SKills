@@ -1,0 +1,12 @@
+{
+  "name": "skills",
+  "version": "1.0.0",
+  "description": "GitHub Copilot Agent Skills 集合 — 提供 CLI 自动化脚本用于创建、校验、同步和列举技能",
+  "scripts": {
+    "skill:new": "node scripts/new-skill.js",
+    "skill:list": "node scripts/list-skills.js",
+    "skill:validate": "node scripts/validate-skills.js",
+    "skill:sync": "node scripts/sync-skills.js"
+  },
+  "license": "MIT"
+}

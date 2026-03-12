@@ -36,7 +36,25 @@ SKills/
 
 ## 快速开始
 
-### 使用 Agent 工作流（推荐）
+### 使用 CLI 脚本（推荐）
+
+在仓库根目录运行 CLI 命令进行自动化管理：
+
+```bash
+# 新建技能（自动从模板脚手架，创建副本，注册索引）
+npm run skill:new -- <skill-name>
+
+# 列出所有已注册技能
+npm run skill:list
+
+# 校验所有技能文件的规范性
+npm run skill:validate
+
+# 将 skills/ 同步到 .github/skills/
+npm run skill:sync
+```
+
+### 使用 Agent 工作流
 
 进入 **Actions → 创建新 Skill（Copilot Agent）**，填写技能名称和需求描述，Copilot Agent 将自动理解项目结构、生成 Skill 并提交 Pull Request。
 
