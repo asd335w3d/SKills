@@ -1,0 +1,77 @@
+name: 创建新 Skill（Copilot Agent）
+
+on:
+  workflow_dispatch:
+    inputs:
+      skill_name:
+        description: '技能名称（小写英文，单词间用连字符，如：my-skill）'
+        required: true
+        type: string
+      requirement:
+        description: '技能需求描述（说明该技能的功能、使用场景及预期行为）'
+        required: true
+        type: string
+
+jobs:
+  create-skill:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      id-token: write
+    steps:
+      - name: 检出仓库
+        uses: actions/checkout@v4
+
+      - name: 校验技能名称格式及唯一性
+        shell: bash
+        run: |
+          SKILL_NAME="${{ inputs.skill_name }}"
+
+          # 校验格式：小写字母、数字和连字符，不能以连字符开头或结尾
+          if ! echo "$SKILL_NAME" | grep -qE '^[a-z0-9][a-z0-9-]*[a-z0-9]$|^[a-z0-9]$'; then
+            echo "::error::技能名称格式不合规：「$SKILL_NAME」。应为小写英文字母、数字，单词间用连字符分隔（如：my-skill）。"
+            exit 1
+          fi
+
+          # 校验唯一性：检查目录是否已存在
+          if [ -d "skills/$SKILL_NAME" ]; then
+            echo "::error::技能「$SKILL_NAME」已存在（skills/$SKILL_NAME 目录已存在），请使用其他名称。"
+            exit 1
+          fi
+
+          echo "校验通过：技能名称「$SKILL_NAME」合规且唯一。"
+
+      - name: 使用 Copilot Agent 创建 Skill
+        uses: github/copilot-coding-agent@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          prompt: |
+            请根据以下需求，在本仓库中创建一个新的 GitHub Copilot Agent Skill。
+
+            **技能名称**：${{ inputs.skill_name }}
+            **需求描述**：${{ inputs.requirement }}
+
+            ## 操作步骤
+
+            1. 阅读 `.github/copilot-instructions.md`，了解仓库规则和标准目录结构
+            2. 阅读 `.github/skills/skill-authoring-guide/SKILL.md`，了解技能编写规范、字段要求和质量标准
+            3. 阅读 `skills/template/SKILL.md`，获取标准技能模板结构
+            4. 阅读 `skills/README.md`，了解现有技能列表，避免重复
+            5. 在 `skills/${{ inputs.skill_name }}/SKILL.md` 创建技能文件：
+               - YAML frontmatter 中填写 `name`（与目录名完全一致）和 `description`
+               - 正文包含「说明」「流程」「示例」三个章节，内容须完整覆盖需求描述
+            6. 在 `.github/skills/${{ inputs.skill_name }}/SKILL.md` 创建相同内容的副本
+               （此路径供 GitHub Copilot Agent 自动加载技能）
+            7. 在 `skills/README.md` 的技能索引表中注册该技能（补充名称、目录路径和描述）
+            8. 以 Pull Request 提交所有变更：
+               - PR 标题格式：`新增 Skill：${{ inputs.skill_name }}`
+               - commit message 使用简体中文
+
+            ## 注意事项
+
+            - 所有文件只能使用 `.md`、`.js`、`.ts`、`.yaml`/`.yml`、`.json` 扩展名
+            - 技能目录名必须与 `SKILL.md` 中的 `name` 字段完全一致（小写，连字符分隔）
+            - 所有文档内容使用简体中文撰写
+            - 若技能名称已存在于 `skills/README.md` 索引中，请先向用户反馈冲突，再继续操作
